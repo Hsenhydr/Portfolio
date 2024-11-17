@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400..900&family=Quicksand:wght@300..700&display=swap");
+
+:root {
+  --color: #fec544;
+}
+
+body {
+  font-family: "Playfair Display", serif !important;
+  overflow-x: hidden !important;
+  scroll-behavior: smooth !important;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgb(221, 193, 193);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color);
+  border-radius: 20px;
+}
+
+.typewriter-container {
+  font-size: 50px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+}
+
+.typewriter-text {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.highlight {
+  color: var(--color);
+}
+
+.cursor {
+  display: inline-block;
+  width: 1px;
+  height: 50px;
+  background-color: var(--color);
+  animation: blink 0.7s steps(1) infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.icons:hover {
+  color: var(--color) !important;
+}
+
+.linebelow::after {
+  content: " ";
+  display: block;
+  width: 75px;
+  height: 1px;
+  background-color: var(--color);
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.skillborder {
+  border: 2px solid var(--color);
+  border-radius: 9999px;
+  padding: 5px 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.skillborder:hover {
+  color: var(--color);
+  border-color: white;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  background-color: black;
+}
+
+.content {
+  position: absolute;
+  color: white;
+}
+
+.con:hover .overlay {
+  opacity: 0.5;
+}
+
+.icon:hover {
+  border: 2px solid var(--color);
+  border-radius: 50%;
+}
+
+/* @keyframes slide-in-right {
+  0% {
+    transform: translateX(1000px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+} */
+
+.abouttrans {
+  animation: slide-in-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation-timeline: view();
+  animation-range: 0% 40%;
+}
