@@ -28,8 +28,8 @@ function Education() {
     <section className="section" id="education">
       <p className="eyebrow">{"// education"}</p>
       <h2 className="section-title">Education &amp; Certifications</h2>
-      <div className="education-grid">
-        <div className="edu-card">
+      <div className="education-grid" data-reveal-group>
+        <div className="edu-card" data-reveal>
           <div className="edu-card-head">Education</div>
           {EDUCATION.map((item) => (
             <div className="edu-item" key={item.degree}>
@@ -40,7 +40,7 @@ function Education() {
             </div>
           ))}
         </div>
-        <div className="edu-card">
+        <div className="edu-card" data-reveal>
           <div className="edu-card-head">Certifications</div>
           {CERTIFICATIONS.map((cert) => (
             <div className="edu-item" key={cert.title}>

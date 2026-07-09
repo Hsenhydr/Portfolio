@@ -70,9 +70,9 @@ function Projects() {
     <section className="section" id="projects">
       <p className="eyebrow">{"// projects"}</p>
       <h2 className="section-title">Projects</h2>
-      <div className="projects-grid">
+      <div className="projects-grid" data-reveal-group>
         {PROJECTS.map((project) => (
-          <div className={`project-card${project.featured ? " featured" : ""}`} key={project.id}>
+          <div className={`project-card${project.featured ? " featured" : ""}`} data-reveal key={project.id}>
             <ProjectMedia project={project} />
             {project.featured && <div className="project-featured-tag">Featured</div>}
             <div className="project-title">{project.title}</div>

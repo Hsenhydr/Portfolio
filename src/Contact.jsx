@@ -3,7 +3,7 @@ import React from "react";
 function Contact() {
   return (
     <section className="section" id="contact">
-      <div className="contact-block">
+      <div className="contact-block" data-reveal>
         <div className="contact-copy">
           <p className="eyebrow">{"// contact"}</p>
           <h2>Open to the next hard problem.</h2>

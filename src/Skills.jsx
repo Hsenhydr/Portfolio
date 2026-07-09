@@ -36,9 +36,9 @@ function Skills() {
     <section className="section" id="skills">
       <p className="eyebrow">{"// skills"}</p>
       <h2 className="section-title">Skills</h2>
-      <div className="skills-grid">
+      <div className="skills-grid" data-reveal-group>
         {SKILL_CATEGORIES.map((cat) => (
-          <div className="skill-card" key={cat.category}>
+          <div className="skill-card" data-reveal key={cat.category}>
             <div className="skill-cat">{cat.category}</div>
             <div className="skill-tags">
               {cat.skills.map((skill) => (

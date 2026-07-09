@@ -111,7 +111,7 @@ function Experience() {
 
       {!showJson ? (
         <div>
-          <div className="flagship-card">
+          <div className="flagship-card" data-reveal>
             <div className="flagship-head">
               <div>
                 <div className="flagship-role">{flagship.role}</div>
@@ -121,9 +121,9 @@ function Experience() {
             </div>
             <p className="flagship-intro">{flagship.intro}</p>
 
-            <div className="platform-grid">
+            <div className="platform-grid" data-reveal-group>
               {flagship.platforms.map((platform) => (
-                <div className="platform-card" key={platform.name}>
+                <div className="platform-card" data-reveal key={platform.name}>
                   <div className="platform-name">{platform.name}</div>
                   <div className="platform-stat">{platform.stat}</div>
                   <p className="platform-bullet">{platform.bullet}</p>
@@ -141,7 +141,7 @@ function Experience() {
           </div>
 
           {otherRoles.map((role) => (
-            <div className="compact-role" key={role.role + role.period}>
+            <div className="compact-role" data-reveal key={role.role + role.period}>
               <div className="compact-date">{role.period}</div>
               <div>
                 <div className="compact-title">{role.role}</div>

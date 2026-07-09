@@ -10,9 +10,9 @@ const STATS = [
 function StatsStrip() {
   return (
     <section className="stats-strip" aria-label="Impact highlights">
-      <div className="stats-inner">
+      <div className="stats-inner" data-reveal-group>
         {STATS.map((stat) => (
-          <div className="stat-item" key={stat.label}>
+          <div className="stat-item" data-reveal key={stat.label}>
             <div className="stat-number">{stat.number}</div>
             <div className="stat-label">{stat.label}</div>
           </div>
