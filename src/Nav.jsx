@@ -1,53 +1,67 @@
-import React from "react";
+import React, { useState } from "react";
+
+const NAV_LINKS = [
+  { href: "#hero", label: "Home" },
+  { href: "#experience", label: "Experience" },
+  { href: "#education", label: "Education" },
+  { href: "#skills", label: "Skills" },
+  { href: "#projects", label: "Projects" },
+  { href: "#contact", label: "Contact" },
+];
 
 function Nav() {
-  return (
-    <div
-      style={{
-        position: "fixed",
-        top: 0,
-        width: "100%",
-        zIndex: 1000,
-      }}
-    >
-      <nav className="navbar navbar-expand py-4">
-        <div className="container-fluid ">
-          <div
-            className="mx-auto border border-1 py-1 d-flex gap-5"
-            style={{ borderRadius: "9999px", backgroundColor: "white" }}
-          >
-            <ul className="navbar-nav">
-              <li className="nav-item ps-5 pe-3 ">
-                <a className=" nav-link navline position-relative" href="#">
-                  Home
-                </a>
-              </li>
-              <li className="nav-item px-3">
-                <a className="nav-link " href="#about">
-                  About
-                </a>
-              </li>
+  const [menuOpen, setMenuOpen] = useState(false);
+  const isMac =
+    typeof navigator !== "undefined" && navigator.platform.toUpperCase().indexOf("MAC") >= 0;
 
-              <li className="nav-item px-3">
-                <a className="nav-link " href="#skills">
-                  Skills
-                </a>
-              </li>
-              <li className="nav-item px-3">
-                <a className="nav-link " href="#projects">
-                  Projects
-                </a>
-              </li>
-              <li className="nav-item pe-5 ps-3">
-                <a className="nav-link " href="#contact">
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
+  const openCommandPalette = () => {
+    window.dispatchEvent(new Event("cmdk:open"));
+  };
+
+  return (
+    <nav className="site-nav" aria-label="Primary">
+      <div className="nav-inner">
+        <a href="#hero" className="nav-logo">
+          hussein<span>@dev</span>
+        </a>
+        <ul className="nav-links">
+          {NAV_LINKS.map((link, idx) => (
+            <li key={link.label}>
+              <a href={link.href} className={idx === 0 ? "active" : ""} aria-current={idx === 0 ? "page" : undefined}>
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <div className="nav-actions">
+          <button type="button" className="cmdk-trigger" onClick={openCommandPalette} aria-haspopup="dialog">
+            <span>Search</span>
+            <kbd>{isMac ? "⌘K" : "Ctrl K"}</kbd>
+          </button>
+          <button
+            type="button"
+            className="menu-toggle"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobileMenuPanel"
+            onClick={() => setMenuOpen((prev) => !prev)}
+          >
+            {menuOpen ? "✕" : "☰"}
+          </button>
         </div>
-      </nav>
-    </div>
+      </div>
+      <div className={`mobile-menu-panel${menuOpen ? " open" : ""}`} id="mobileMenuPanel">
+        <ul>
+          {NAV_LINKS.map((link, idx) => (
+            <li key={link.label}>
+              <a href={link.href} className={idx === 0 ? "active" : ""} onClick={() => setMenuOpen(false)}>
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
   );
 }
 

@@ -2,14 +2,12 @@ import React from "react";
 
 function Footer() {
   return (
-    <div style={{ backgroundColor: "#0A101E" }}>
-      <footer
-        className="text-white text-center p-3"
-        style={{ fontSize: "16px" }}
-      >
-        © 2024. Designed by Hussein Haidar. All right reserved.
-      </footer>
-    </div>
+    <footer className="site-footer">
+      © 2026 Hussein Haidar ·{" "}
+      <a href="https://github.com/Hsenhydr/Portfolio" className="footer-link" target="_blank" rel="noopener noreferrer">
+        view source
+      </a>
+    </footer>
   );
 }
 

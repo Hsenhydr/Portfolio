@@ -1,29 +1,40 @@
+import { useEffect } from "react";
 import "./App.css";
-import Nav from "./Nav";
-import Hero from "./Hero";
-import About from "./About.jsx";
+import Nav from "./Nav.jsx";
+import Hero from "./Hero.jsx";
+import StatsStrip from "./StatsStrip.jsx";
+import Experience from "./Experience.jsx";
+import Education from "./Education.jsx";
 import Skills from "./Skills.jsx";
 import Projects from "./Projects.jsx";
 import Contact from "./Contact.jsx";
 import Footer from "./Footer.jsx";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "aos/dist/aos.css";
+import CommandPalette from "./CommandPalette.jsx";
 
 function App() {
+  useEffect(() => {
+    const main = document.getElementById("main-content");
+    if (main) main.focus({ preventScroll: true });
+  }, []);
+
   return (
-    <div style={{ backgroundColor: "#070D1B" }}>
-      <div style={{ maxHeight: "20vh", minHeight: "10vh" }}>
-        <Nav />
-      </div>
-      <div style={{ maxHeight: "90vh", minHeight: "90vh" }}>
+    <>
+      <a href="#main-content" className="skip-link">
+        Skip to content
+      </a>
+      <Nav />
+      <main id="main-content" tabIndex={-1}>
         <Hero />
-      </div>
-      <About />
-      <Skills />
-      <Projects />
-      <Contact />
+        <StatsStrip />
+        <Experience />
+        <Education />
+        <Skills />
+        <Projects />
+        <Contact />
+      </main>
       <Footer />
-    </div>
+      <CommandPalette />
+    </>
   );
 }
 
