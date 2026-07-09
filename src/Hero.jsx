@@ -30,8 +30,13 @@ function Hero() {
       </div>
       <div className="hero-photo-wrap">
         <div className="hero-photo">
+          <div className="hero-photo-titlebar">
+            <span className="dot red"></span>
+            <span className="dot yellow"></span>
+            <span className="dot green"></span>
+            <span className="hero-photo-label">hussein.jpg</span>
+          </div>
           <img src="/Me3.jpg" alt="Hussein Haidar" />
-          <div className="duotone-overlay" aria-hidden="true"></div>
         </div>
         <div className="status-chip">
           <span className="status-dot"></span> Available for work

@@ -260,10 +260,17 @@ input:focus-visible,
   box-sizing: border-box;
 }
 @media (max-width: 640px) {
-  .code-body {
+  .code-body,
+  .experience-json {
     font-size: 11px;
     padding: 14px 16px;
     line-height: 1.6;
+    /* Long lines wrap instead of requiring a hidden sideways scroll —
+       on a touch screen, silently-truncated text with no scroll
+       affordance just reads as broken. */
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    overflow-x: hidden;
   }
 }
 .tok-kw {
@@ -482,28 +489,35 @@ input:focus-visible,
   height: 320px;
   border-radius: 12px;
   border: 1px solid var(--bordercolor);
-  position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #0f0d0a;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+/* Same window-chrome language as the terminal (title bar + traffic-light
+   dots) so the photo ties into the site without recoloring it. */
+.hero-photo-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #161310;
+  border-bottom: 1px solid var(--bordercolor);
+  flex-shrink: 0;
+}
+.hero-photo-label {
+  margin-left: 8px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--mutedcolor);
 }
 .hero-photo img {
-  position: relative;
-  z-index: 1;
+  flex: 1;
   width: 100%;
-  height: 100%;
+  min-height: 0;
   object-fit: cover;
-  /* Duotone treatment: a light grayscale + a soft warm color-blend overlay
-     (below) eases the photo into the graphite/amber palette without
-     crushing it into a heavy, dark silhouette. */
-  filter: grayscale(0.7) contrast(0.96) brightness(1.15);
   display: block;
-}
-.hero-photo .duotone-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  background: linear-gradient(160deg, rgba(215, 154, 60, 0.24) 0%, rgba(60, 52, 40, 0.18) 100%);
-  mix-blend-mode: color;
-  pointer-events: none;
 }
 .status-chip {
   position: absolute;
