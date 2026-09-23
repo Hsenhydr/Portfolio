@@ -109,7 +109,12 @@ function Experience() {
         </button>
       </div>
 
-      {!showJson ? (
+      {/* Both views stay mounted and are toggled via CSS rather than a
+          conditional render — the cards carry a one-time scroll-reveal
+          animation, and unmounting/remounting them (as a ternary would)
+          left the remounted copies permanently invisible since the
+          reveal observer only ever runs once, at initial page load. */}
+      <div style={{ display: showJson ? "none" : "block" }}>
         <div>
           <div className="flagship-card" data-reveal>
             <div className="flagship-head">
@@ -158,11 +163,10 @@ function Experience() {
             </div>
           ))}
         </div>
-      ) : (
-        <pre className="code-block experience-json">
-          <code>{highlightJsonTokens(JSON.stringify(EXPERIENCE_DATA, null, 2))}</code>
-        </pre>
-      )}
+      </div>
+      <pre className="code-block experience-json" style={{ display: showJson ? "block" : "none" }}>
+        <code>{highlightJsonTokens(JSON.stringify(EXPERIENCE_DATA, null, 2))}</code>
+      </pre>
     </section>
   );
 }

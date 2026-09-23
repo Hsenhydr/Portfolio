@@ -36,9 +36,9 @@ const PROJECTS = [
   },
   {
     id: 5,
-    title: "Media Agency Website — Senior Project (18/20)",
+    title: "Media Agency Website — Senior Project",
     description:
-      "Full-stack company website with user subscriptions, transaction tracking, and an admin panel — highest senior project grade in the faculty.",
+      "Full-stack company website with user subscriptions, transaction tracking, and an admin panel.",
     tech: ["C#", "ASP.NET Core Razor Pages", "SQL Server", "Bootstrap"],
     github: "https://github.com/Hsenhydr/Senior-Project",
   },
