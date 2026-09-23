@@ -24,12 +24,12 @@ const COMMANDS = {
     "  clear             clear the terminal",
   whoami: () => "Hussein Haidar — Full-Stack Software Engineer",
   "cat about.md": () =>
-    "Full-stack engineer shipping production SaaS for regulated\npublic-sector and financial-sector clients. Security-focused,\nfull ownership from schema to UI.",
+    "Full-stack engineer with 2 years of IT experience shipping\nproduction SaaS for regulated public-sector and financial-sector\nclients. Security-focused, full ownership from schema to UI.",
   "cat contact.txt": () =>
     "location  Beirut, Lebanon\nemail     hsenhydr007@gmail.com\nstatus    open to freelance & full-time",
   ls: () => "projects/  experience/  about.md  contact.txt",
   "ls projects": () => "scalable-ecommerce-backend/  rbac-ecommerce-app/  tabaraa/",
-  "ls experience": () => "allegiancetek/  apliman/  freelance/",
+  "ls experience": () => "allegiancetek/  apliman/  freelance/  iss/",
   "open github": () => {
     window.open("https://github.com/Hsenhydr", "_blank");
     return "opening github.com/Hsenhydr …";

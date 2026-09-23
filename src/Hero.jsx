@@ -9,7 +9,7 @@ function Hero() {
         <h1>Hussein Haidar</h1>
         <Terminal />
         <p className="sr-only">
-          Hussein Haidar — Full-Stack Software Engineer. Building secure, production-scale SaaS
+          Hussein Haidar — Full-Stack Software Engineer with 2 years of IT experience. Building secure, production-scale SaaS
           platforms for regulated public-sector and financial-sector clients. Location: Beirut,
           Lebanon. Email: hsenhydr007@gmail.com. Status: open to freelance and full-time work. The
           panel above is an interactive terminal — type &quot;help&quot; into it for a list of

@@ -11,7 +11,7 @@ const EXPERIENCE_DATA = [
       {
         name: "Cortex-OPS — Survey platform",
         stat: "88,967 tenants · 152 agencies",
-        bullet: "XML/CSV export adapters for 6 French housing orgs, org-specific field mapping.",
+        bullet: "XML/CSV export adapters for 6 French housing orgs; comms dashboard tracking 76K+ messages, SMS/email to 35,270+ recipients.",
       },
       {
         name: "Axessy — Postal B2B SaaS",
