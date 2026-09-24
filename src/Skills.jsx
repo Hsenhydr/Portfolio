@@ -1,55 +1,85 @@
-import React from "react";
-
-const SKILL_CATEGORIES = [
-  {
-    category: "Languages",
-    skills: ["Python", "TypeScript", "JavaScript", "C#", "Java", "Dart"],
-  },
+// Content mirrors public/Hussein_Haidar_CV.pdf (Technical Skills) in the CV's order;
+// update the CV first, then this. `detail` holds what the CV puts in parentheses.
+const SKILLS = [
+  { category: "Languages", items: ["Python", "TypeScript", "JavaScript", "C#", "Java", "Dart"] },
   {
     category: "Frontend",
-    skills: ["Angular", "React.js", "Flutter", "HTML", "CSS", "Bootstrap"],
+    items: [
+      { name: "Angular", detail: "Signals API, RxJS, standalone components" },
+      "React.js",
+      "Flutter",
+      "HTML",
+      "CSS",
+      "Bootstrap",
+      "PrimeNG",
+      "Angular Material",
+    ],
   },
   {
     category: "Backend & APIs",
-    skills: ["Flask", "Symfony (PHP)", "Node.js", "Express.js", "Spring Boot", "ASP.NET Core", "JWT"],
+    items: [
+      "Flask",
+      { name: "Symfony", detail: "PHP" },
+      "Node.js",
+      "Express.js",
+      "Spring Boot",
+      "ASP.NET Core",
+      "REST APIs",
+      "JWT",
+      "SAML 2.0",
+      "Doctrine ORM",
+    ],
   },
+  { category: "Databases", items: ["MySQL", "SQLAlchemy", "PostgreSQL", "SQL Server", "SQLite", "Firestore"] },
+  { category: "Messaging & Tasks", items: ["Celery", "RabbitMQ", "n8n"] },
   {
-    category: "Databases",
-    skills: ["MySQL", "PostgreSQL", "SQL Server", "SQLite", "Firestore"],
+    category: "Integrations",
+    items: ["Twilio", "SendGrid", "Firebase", "Socket.io", { name: "pyvmomi", detail: "VMware" }, "gevent", "Jinja2"],
   },
   {
     category: "Security",
-    skills: ["TOTP / MFA", "AES-256-GCM", "SAML 2.0 SSO", "RBAC"],
+    items: ["TOTP/MFA", "AES‑256‑GCM", "Fernet encryption", "Microsoft EntraID SSO", "RBAC", "Device fingerprinting"],
   },
   {
-    category: "Integrations",
-    skills: ["Twilio", "SendGrid", "Firebase", "Socket.io", "Celery", "RabbitMQ", "pyvmomi (VMware)"],
+    category: "Architecture",
+    items: [
+      "OOP",
+      { name: "Domain-Driven Design", detail: "DDD" },
+      "3-Tier Architecture",
+      "MVVM",
+      "Multi‑tenant SaaS",
+      "Provider + Repository Pattern",
+    ],
   },
-  {
-    category: "Tools & DevOps",
-    skills: ["Git", "GitHub", "GitLab", "Docker", "Jest", "CI/CD"],
-  },
+  { category: "Tools & DevOps", items: ["Git", "GitHub", "GitLab", "Docker", "CI/CD Pipelines", "Jest"] },
 ];
 
 function Skills() {
   return (
-    <section className="section" id="skills">
-      <p className="eyebrow">{"// skills"}</p>
-      <h2 className="section-title">Skills</h2>
-      <div className="skills-grid" data-reveal-group>
-        {SKILL_CATEGORIES.map((cat) => (
-          <div className="skill-card" data-reveal key={cat.category}>
-            <div className="skill-cat">{cat.category}</div>
-            <div className="skill-tags">
-              {cat.skills.map((skill) => (
-                <span className="tag" key={skill}>
-                  {skill}
-                </span>
-              ))}
-            </div>
+    <section className="section" id="skills" aria-labelledby="skills-title">
+      <h2 className="section-title" id="skills-title">
+        Skills
+      </h2>
+      <dl className="skills-table">
+        {SKILLS.map((row) => (
+          <div key={row.category}>
+            <dt>{row.category}</dt>
+            <dd>
+              <ul>
+                {row.items.map((item) => {
+                  const { name, detail } = typeof item === "string" ? { name: item } : item;
+                  return (
+                    <li key={name}>
+                      {name}
+                      {detail && <small>{detail}</small>}
+                    </li>
+                  );
+                })}
+              </ul>
+            </dd>
           </div>
         ))}
-      </div>
+      </dl>
     </section>
   );
 }

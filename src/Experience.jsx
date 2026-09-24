@@ -1,172 +1,129 @@
-import React, { useState } from "react";
+// Content mirrors public/Hussein_Haidar_CV.pdf; update the CV first, then this.
+const CURRENT_ROLE = {
+  role: "Software Engineer",
+  company: "AllegianceTek",
+  period: "Oct 2025 - Present",
+  intro:
+    "I own features end to end, from database schema and API design to the UI, on platforms for housing management, postal automation, cloud infrastructure and shareholder services.",
+  platforms: [
+    {
+      name: "Multi-tenant survey platform",
+      what: "XML/CSV export adapters for 6 French housing organizations, plus a real-time communications dashboard with SMS/email flows.",
+      metric: "88,967 tenants, 152 agencies",
+    },
+    {
+      name: "Postal automation SaaS",
+      what: "Microsoft EntraID SSO via SAML 2.0 with DB-driven multi-tenant config and cross-tenant isolation.",
+      metric: "SAML 2.0, AES‑256‑GCM",
+    },
+    {
+      name: "Document ingestion pipeline",
+      what: "Stability checks, SHA256 verification, routing and retry archival, with parsers across 4 document types.",
+      metric: "102,274 files, 288,456+ records",
+    },
+    {
+      name: "Cloud infrastructure SaaS",
+      what: "Built from the ground up: DB/API to Angular 19 frontend, VMware VM management via pyvmomi, layered auth.",
+      metric: "JWT, TOTP MFA, device fingerprinting",
+    },
+    {
+      name: "Shareholder self-service portal",
+      what: "For a major asset manager: per-shareholder JWT auth, per-fund campaign gating, batch import with 8+ validators.",
+      metric: "128,779 shareholders, 16 funds",
+    },
+  ],
+  decisions: [
+    {
+      title: "Encrypting MFA secrets without downtime",
+      body: "I encrypted MFA secrets at rest with AES‑256‑GCM and gave each one a version prefix (enc:v1:). Old and new secrets could coexist, so I shipped the change with no maintenance window.",
+    },
+    {
+      title: "102,274 production files, verified on arrival",
+      body: "My pipeline checks each file for stability and verifies its SHA256 hash before routing it. When a file fails, the pipeline moves it to a retry archive and tries again.",
+    },
+  ],
+  stack: "Python, Flask, SQLAlchemy, PHP/Symfony, Angular, TypeScript",
+};
 
-const EXPERIENCE_DATA = [
-  {
-    role: "Software Engineer",
-    company: "AllegianceTek",
-    period: "Oct 2025 – Present",
-    intro:
-      "Full-stack engineer across 5 production platforms for regulated French public-sector and financial-sector clients — spanning housing management, postal automation, cloud infrastructure, and shareholder services.",
-    platforms: [
-      {
-        name: "Cortex-OPS — Survey platform",
-        stat: "88,967 tenants · 152 agencies",
-        bullet: "XML/CSV export adapters for 6 French housing orgs; comms dashboard tracking 76K+ messages, SMS/email to 35,270+ recipients.",
-      },
-      {
-        name: "Axessy — Postal B2B SaaS",
-        stat: "SAML 2.0 · AES-256-GCM",
-        bullet: "EntraID SSO with per-tenant config; encrypted TOTP secrets, zero-downtime MFA rollout.",
-      },
-      {
-        name: "Cortex-CIPflow — Doc automation",
-        stat: "102,274 files processed",
-        bullet: "End-to-end ingestion pipeline with SHA256 verification and retry archival.",
-      },
-      {
-        name: "Atek Cloud Manager — VMware SaaS",
-        stat: "Built from the ground up",
-        bullet: "Multi-tenant VM management via pyvmomi; layered JWT + TOTP + device fingerprinting.",
-      },
-      {
-        name: "Cortex Amundi — Shareholder portal",
-        stat: "128,779 shareholders · 16 funds",
-        bullet: "Per-shareholder JWT short URLs; batch import with 8+ validators.",
-      },
-    ],
-    tech: ["Python", "Flask", "PHP/Symfony", "Angular", "JWT", "SAML 2.0"],
-  },
+const PAST_ROLES = [
   {
     role: "Full Stack Developer",
-    company: "Apliman — Internship",
-    period: "Mar 2025 – May 2025",
-    desc: "Internal tools and dashboards in a modular enterprise system using Flutter and Spring Boot, applying MVVM and Repository patterns.",
-    tech: ["Flutter", "Spring Boot", "MySQL"],
+    company: "Apliman, internship",
+    period: "Mar 2025 - May 2025",
+    desc: "Internal tools and dashboards in a modular enterprise system, applying MVVM, Provider and Repository patterns with RESTful APIs.",
+    stack: "Flutter, Spring Boot",
   },
   {
     role: "Freelance Web Developer",
     company: null,
-    period: "Nov 2024 – Present",
-    desc: "3+ custom websites and web applications end-to-end — UI, backend logic, database design, admin dashboards.",
-    tech: ["C#", "ASP.NET Core", "SQL Server"],
+    period: "Nov 2024 - Present",
+    desc: "3+ custom websites and web applications delivered end to end: UI design, backend logic, database design and admin dashboards.",
+    stack: "C# ASP.NET, SQL Server, JavaScript",
   },
   {
     role: "Web Developer",
-    company: "ISS / Software Hive — Internship",
-    period: "Aug 2024 – Oct 2024",
-    desc: "React.js web application with SharePoint Online integration via REST APIs — CRUD across Lists, Libraries, and Pages, plus Azure AD security token retrieval.",
-    tech: ["React", "SharePoint", "Azure AD"],
+    company: "ISS / Software Hive, internship",
+    period: "Aug 2024 - Oct 2024",
+    desc: "React.js app with SharePoint Online integration via REST (CRUD across Lists, Libraries and Pages), connected to Azure AD for token retrieval and permission-based access.",
+    stack: "React.js, REST APIs, Azure AD",
   },
 ];
 
-function highlightJsonTokens(jsonString) {
-  const regex =
-    /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?)/g;
-  const parts = [];
-  let lastIndex = 0;
-  let match;
-  let key = 0;
-  while ((match = regex.exec(jsonString)) !== null) {
-    if (match.index > lastIndex) {
-      parts.push(<React.Fragment key={key++}>{jsonString.slice(lastIndex, match.index)}</React.Fragment>);
-    }
-    const token = match[0];
-    let cls = "tok-type";
-    if (/^"/.test(token)) {
-      cls = /:$/.test(token) ? "tok-kw" : "tok-str";
-    }
-    parts.push(
-      <span key={key++} className={cls}>
-        {token}
-      </span>
-    );
-    lastIndex = regex.lastIndex;
-  }
-  if (lastIndex < jsonString.length) {
-    parts.push(<React.Fragment key={key++}>{jsonString.slice(lastIndex)}</React.Fragment>);
-  }
-  return parts;
-}
-
 function Experience() {
-  const [showJson, setShowJson] = useState(false);
-  const [flagship, ...otherRoles] = EXPERIENCE_DATA;
-
+  const r = CURRENT_ROLE;
   return (
-    <section className="section" id="experience">
-      <div className="section-head-row">
-        <div>
-          <p className="eyebrow">{"// experience"}</p>
-          <h2 className="section-title">Experience</h2>
-        </div>
-        <button
-          type="button"
-          className="json-toggle"
-          aria-pressed={showJson}
-          onClick={() => setShowJson((prev) => !prev)}
-        >
-          {showJson ? "‹ View as cards" : "{ } View as JSON"}
-        </button>
-      </div>
+    <section className="section" id="experience" aria-labelledby="experience-title">
+      <h2 className="section-title" id="experience-title">
+        Experience
+      </h2>
 
-      {/* Both views stay mounted and are toggled via CSS rather than a
-          conditional render — the cards carry a one-time scroll-reveal
-          animation, and unmounting/remounting them (as a ternary would)
-          left the remounted copies permanently invisible since the
-          reveal observer only ever runs once, at initial page load. */}
-      <div style={{ display: showJson ? "none" : "block" }}>
-        <div>
-          <div className="flagship-card" data-reveal>
-            <div className="flagship-head">
-              <div>
-                <div className="flagship-role">{flagship.role}</div>
-                <div className="flagship-company">{flagship.company}</div>
-              </div>
-              <div className="flagship-date">{flagship.period}</div>
-            </div>
-            <p className="flagship-intro">{flagship.intro}</p>
+      <article className="xp-panel">
+        <header className="xp-head">
+          <h3 className="xp-role">
+            {r.role} <span className="xp-company">{r.company}</span>
+          </h3>
+          <span className="xp-date">{r.period}</span>
+        </header>
+        <p className="xp-intro">{r.intro}</p>
 
-            <div className="platform-grid" data-reveal-group>
-              {flagship.platforms.map((platform) => (
-                <div className="platform-card" data-reveal key={platform.name}>
-                  <div className="platform-name">{platform.name}</div>
-                  <div className="platform-stat">{platform.stat}</div>
-                  <p className="platform-bullet">{platform.bullet}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="tag-row">
-              {flagship.tech.map((tech) => (
-                <span className="tag" key={tech}>
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {otherRoles.map((role) => (
-            <div className="compact-role" data-reveal key={role.role + role.period}>
-              <div className="compact-date">{role.period}</div>
-              <div>
-                <div className="compact-title">{role.role}</div>
-                {role.company && <div className="compact-company">{role.company}</div>}
-                <p className="compact-desc">{role.desc}</p>
-                <div className="tag-row" style={{ marginTop: 0 }}>
-                  {role.tech.map((tech) => (
-                    <span className="tag" key={tech}>
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
+        <dl className="xp-platforms">
+          {r.platforms.map((p) => (
+            <div key={p.name}>
+              <dt>{p.name}</dt>
+              <dd>{p.what}</dd>
+              <dd className="xp-metric">{p.metric}</dd>
             </div>
           ))}
+        </dl>
+
+        <div className="xp-decisions">
+          <h4>Engineering decisions</h4>
+          <div className="xp-decision-list">
+            {r.decisions.map((d) => (
+              <div key={d.title}>
+                <h5>{d.title}</h5>
+                <p>{d.body}</p>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-      <pre className="code-block experience-json" style={{ display: showJson ? "block" : "none" }}>
-        <code>{highlightJsonTokens(JSON.stringify(EXPERIENCE_DATA, null, 2))}</code>
-      </pre>
+
+        <p className="xp-stack">{r.stack}</p>
+      </article>
+
+      <ol className="xp-timeline">
+        {PAST_ROLES.map((role) => (
+          <li className="xp-item" key={role.role + role.period}>
+            <span className="xp-date">{role.period}</span>
+            <div>
+              <h3>{role.role}</h3>
+              {role.company && <p className="xp-item-company">{role.company}</p>}
+              <p className="xp-item-desc">{role.desc}</p>
+              <p className="xp-stack">{role.stack}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
     </section>
   );
 }

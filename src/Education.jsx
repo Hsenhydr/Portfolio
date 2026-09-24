@@ -1,56 +1,58 @@
-import React from "react";
+// Content mirrors public/Hussein_Haidar_CV.pdf; update the CV first, then this.
+const SCHOOL = "Lebanese University, Faculty of Economics and Business Administration";
 
-const EDUCATION = [
+const GROUPS = [
   {
-    period: "2024 – 2025",
-    degree: "MS in Business Computer Science",
-    school: "Lebanese University — Faculty of Economics and Business Administration",
+    heading: "Degrees",
+    items: [
+      { title: "MS in Business Computer Science", period: "2024 - 2025", detail: SCHOOL },
+      {
+        title: "BS in Business Computer Science",
+        period: "2021 - 2024",
+        detail: SCHOOL,
+        note: "Highest grade for a senior project in the faculty, 18/20",
+      },
+    ],
   },
   {
-    period: "2021 – 2024",
-    degree: "BS in Business Computer Science",
-    school: "Lebanese University — Faculty of Economics and Business Administration",
-    note: "Highest grade for a senior project in the faculty — 18/20",
-  },
-];
-
-const CERTIFICATIONS = [
-  {
-    period: "Sep 2025",
-    title: "Software Engineering Excellence Masterclass",
-    issuer: "SE² Platform",
-    note: "Clean Architecture, SOLID, TypeScript, Node.js, scalable backend design, testing, DevOps basics, enterprise code review.",
+    heading: "Certification",
+    items: [
+      {
+        title: "Software Engineering Excellence Masterclass",
+        period: "Sep 2025",
+        detail: "SE² Platform",
+        topics:
+          "Clean Architecture, SOLID Principles, TypeScript, Node.js, scalable backend design, testing best practices, DevOps basics and enterprise code review practices.",
+      },
+    ],
   },
 ];
 
 function Education() {
   return (
-    <section className="section" id="education">
-      <p className="eyebrow">{"// education"}</p>
-      <h2 className="section-title">Education &amp; Certifications</h2>
-      <div className="education-grid" data-reveal-group>
-        <div className="edu-card" data-reveal>
-          <div className="edu-card-head">Education</div>
-          {EDUCATION.map((item) => (
-            <div className="edu-item" key={item.degree}>
-              <div className="compact-date">{item.period}</div>
-              <div className="edu-degree">{item.degree}</div>
-              <div className="edu-school">{item.school}</div>
-              {item.note && <div className="edu-note">{item.note}</div>}
-            </div>
-          ))}
-        </div>
-        <div className="edu-card" data-reveal>
-          <div className="edu-card-head">Certifications</div>
-          {CERTIFICATIONS.map((cert) => (
-            <div className="edu-item" key={cert.title}>
-              <div className="compact-date">{cert.period}</div>
-              <div className="edu-degree">{cert.title}</div>
-              <div className="edu-school">{cert.issuer}</div>
-              {cert.note && <div className="edu-note">{cert.note}</div>}
-            </div>
-          ))}
-        </div>
+    <section className="section" id="education" aria-labelledby="education-title">
+      <h2 className="section-title" id="education-title">
+        Education &amp; Certifications
+      </h2>
+      <div className="edu-grid">
+        {GROUPS.map((group) => (
+          <div key={group.heading}>
+            <h3 className="edu-group">{group.heading}</h3>
+            <ul className="edu-list">
+              {group.items.map((item) => (
+                <li key={item.title}>
+                  <div className="edu-row">
+                    <h4>{item.title}</h4>
+                    <span className="edu-date">{item.period}</span>
+                  </div>
+                  <p className="edu-detail">{item.detail}</p>
+                  {item.note && <p className="edu-note">{item.note}</p>}
+                  {item.topics && <p className="edu-topics">{item.topics}</p>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </section>
   );

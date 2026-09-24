@@ -1,26 +1,68 @@
-import React from "react";
+import { useRef, useState } from "react";
+
+// Details mirror the header of public/Hussein_Haidar_CV.pdf.
+const EMAIL = "hsenhydr007@gmail.com";
+const LINKS = [
+  { label: "LinkedIn", text: "linkedin.com/in/hsenhydr", href: "https://www.linkedin.com/in/hsenhydr/", external: true },
+  { label: "GitHub", text: "github.com/Hsenhydr", href: "https://github.com/Hsenhydr", external: true },
+  { label: "Phone", text: "+961 78976841", href: "tel:+96178976841" },
+];
 
 function Contact() {
+  const [copyLabel, setCopyLabel] = useState("Copy");
+  const emailRef = useRef(null);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      setCopyLabel("Copied");
+    } catch {
+      // Clipboard blocked: select the address so Ctrl/Cmd C still works.
+      const range = document.createRange();
+      range.selectNodeContents(emailRef.current);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+      setCopyLabel("Press Ctrl C");
+    }
+    setTimeout(() => setCopyLabel("Copy"), 2000);
+  };
+
   return (
-    <section className="section" id="contact">
-      <div className="contact-block" data-reveal>
+    <section className="section" id="contact" aria-labelledby="contact-title">
+      <div className="contact-block">
         <div className="contact-copy">
-          <p className="eyebrow">{"// contact"}</p>
-          <h2>Open to the next hard problem.</h2>
-          <p>Currently open to freelance projects and full-time roles in full-stack or security-focused engineering.</p>
-          <a href="mailto:hsenhydr007@gmail.com" className="btn btn-primary" style={{ marginTop: "22px" }}>
-            Email Me →
-          </a>
+          <h2 id="contact-title">Hiring for full-stack or security work?</h2>
+          <p>Open to full-time roles and freelance projects. Based in Beirut, Lebanon.</p>
+          <div className="contact-actions">
+            <a href={`mailto:${EMAIL}`} className="btn btn-primary">
+              Email me
+            </a>
+            <span className="contact-email">
+              <span ref={emailRef}>{EMAIL}</span>
+              <button type="button" className="contact-copy-btn" onClick={copyEmail}>
+                {copyLabel}
+              </button>
+              <span className="sr-only" aria-live="polite">
+                {copyLabel === "Copied" ? "Email address copied" : ""}
+              </span>
+            </span>
+          </div>
         </div>
-        <div className="contact-list">
-          <a href="tel:+96178976841">+961 78 976 841</a>
-          <a href="https://www.linkedin.com/in/hsenhydr/" target="_blank" rel="noopener noreferrer">
-            linkedin.com/in/hsenhydr
-          </a>
-          <a href="https://github.com/Hsenhydr" target="_blank" rel="noopener noreferrer">
-            github.com/Hsenhydr
-          </a>
-        </div>
+        <ul className="contact-list">
+          {LINKS.map((link) => (
+            <li key={link.label}>
+              <span className="contact-label">{link.label}</span>
+              <a
+                href={link.href}
+                {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              >
+                {link.text}
+                {link.external && <span className="sr-only"> (opens in a new tab)</span>}
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
