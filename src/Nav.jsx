@@ -18,7 +18,11 @@ function Nav() {
   };
 
   useEffect(() => {
-    const sections = NAV_LINKS.map((link) => document.getElementById(link.id)).filter(Boolean);
+    // The hero is watched too: scrolling back to the top sets activeId to "hero", which
+    // matches no link, so the last section's underline clears.
+    const sections = ["hero", ...NAV_LINKS.map((link) => link.id)]
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
     if (sections.length === 0) return;
 
     const observer = new IntersectionObserver(

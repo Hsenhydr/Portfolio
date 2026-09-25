@@ -14,7 +14,7 @@ const CURRENT_ROLE = {
     {
       name: "Postal automation SaaS",
       what: "Microsoft EntraID SSO via SAML 2.0 with DB-driven multi-tenant config and cross-tenant isolation.",
-      metric: "SSO and encrypted MFA",
+      tech: "PHP, Symfony, Doctrine ORM",
     },
     {
       name: "Document ingestion pipeline",
@@ -23,8 +23,8 @@ const CURRENT_ROLE = {
     },
     {
       name: "Cloud infrastructure SaaS",
-      what: "Built from the ground up: DB/API to Angular 19 frontend, VMware VM management via pyvmomi, layered auth.",
-      metric: "JWT, TOTP MFA, device fingerprinting",
+      what: "Built from the ground up, DB to frontend: VMware VM management via pyvmomi, with JWT blacklisting, TOTP MFA and device fingerprinting.",
+      tech: "Python, Flask, Angular 19, PyJWT",
     },
     {
       name: "Shareholder self-service portal",
@@ -93,7 +93,8 @@ function Experience() {
             <div key={p.name}>
               <dt>{p.name}</dt>
               <dd>{p.what}</dd>
-              <dd className="xp-metric">{p.metric}</dd>
+              {/* CV figures stand out; platforms without one show their CV stack, muted. */}
+              {p.metric ? <dd className="xp-metric">{p.metric}</dd> : <dd className="xp-tech">{p.tech}</dd>}
             </div>
           ))}
         </dl>

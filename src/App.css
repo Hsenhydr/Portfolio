@@ -1,6 +1,6 @@
 /* ---------- Tokens: direction D, Mist + Deep Teal ----------
    Dark is the default. Light follows the OS setting.
-   Type scale: xs 12 / sm 14 / md 16 / lg 20 / xl + hero clamps; code 13.
+   Type scale: xs 12 / sm 14 / md 16 / lg 20, plus xl, lede and hero clamps; code 13.
    Radius rule: containers + buttons use --radius, tags + kbd use --radius-sm. */
 :root {
   color-scheme: dark;
@@ -27,7 +27,8 @@
   --fs-md: 16px;
   --fs-lg: 20px;
   --fs-xl: clamp(26px, 3.4vw, 34px);
-  --fs-hero: clamp(40px, 6vw, 60px);
+  --fs-hero: clamp(44px, 6.2vw, 80px);
+  --fs-lede: clamp(18px, 1.55vw, 22px);
   --radius: 10px;
   --radius-sm: 6px;
   --maxw: 1200px;
@@ -413,27 +414,30 @@ main:focus {
 }
 
 /* ================= HERO ================= */
+/* Text and photo read as one block: the text column is exactly as wide as its content and
+   the photo follows at a fixed gap, so no dead band opens between them at any width. */
 .hero {
   padding-top: 88px;
   padding-bottom: 40px;
   display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-  gap: 64px;
+  grid-template-columns: minmax(0, max-content) minmax(0, 400px);
+  justify-content: start;
+  gap: 96px;
   align-items: center;
 }
 .hero h1 {
   font-size: var(--fs-hero);
   font-weight: 700;
-  line-height: 1.02;
-  letter-spacing: -0.035em;
-  margin: 0 0 20px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  margin: 0 0 24px;
 }
 .hero-lede {
-  font-size: var(--fs-lg);
+  font-size: var(--fs-lede);
   line-height: 1.5;
   color: var(--muted);
-  max-width: 40ch;
-  margin: 0 0 32px;
+  max-width: 46ch;
+  margin: 0 0 36px;
   text-wrap: pretty;
 }
 .hero-lede strong {
@@ -447,7 +451,7 @@ main:focus {
 }
 .hero-photo {
   width: 100%;
-  max-width: 340px;
+  max-width: 400px;
   height: auto;
   aspect-ratio: 4 / 5;
   object-fit: cover;
@@ -455,6 +459,21 @@ main:focus {
   justify-self: end;
   border-radius: var(--radius);
   display: block;
+}
+
+/* Narrower desktops: shrink the photo and gap so the name stays on one line. */
+@media (max-width: 1100px) {
+  .hero {
+    grid-template-columns: minmax(0, max-content) minmax(0, 320px);
+    gap: 64px;
+  }
+}
+/* Small laptops / landscape tablets: the lede wraps, so tighten photo and gap to match. */
+@media (max-width: 1000px) {
+  .hero {
+    grid-template-columns: minmax(0, max-content) minmax(0, 280px);
+    gap: 48px;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -512,7 +531,7 @@ main:focus {
 .xp-intro {
   color: var(--muted);
   max-width: 68ch;
-  margin: 10px 0 32px;
+  margin: 10px 0 0;
 }
 .xp-platforms {
   display: grid;
@@ -546,6 +565,12 @@ main:focus {
   font-size: var(--fs-xs);
   color: var(--text);
   font-variant-numeric: tabular-nums;
+  margin-top: 2px;
+}
+.xp-platforms .xp-tech {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--muted);
   margin-top: 2px;
 }
 .xp-decisions {
@@ -620,7 +645,7 @@ main:focus {
 }
 /* Under the intro: tight to the text it describes, clear of the platforms below. */
 .xp-stack-lead {
-  margin: -18px 0 32px;
+  margin: 12px 0 32px;
 }
 .xp-item .xp-stack {
   margin-top: 10px;
@@ -900,10 +925,6 @@ main:focus {
 
 /* ================= CONTACT ================= */
 .contact-block {
-  display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-  gap: 40px;
-  align-items: end;
   border-top: 1px solid var(--line);
   padding-top: 56px;
 }
@@ -959,11 +980,11 @@ main:focus {
 }
 .contact-list {
   list-style: none;
-  margin: 0;
+  margin: 28px 0 0;
   padding: 0;
-  display: grid;
-  gap: 10px;
-  justify-items: end;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 36px;
   font-size: var(--fs-sm);
 }
 .contact-list li {
@@ -986,14 +1007,6 @@ main:focus {
 .contact-list a:hover {
   color: var(--accent-text);
   text-decoration-color: var(--accent-text);
-}
-@media (max-width: 800px) {
-  .contact-block {
-    grid-template-columns: 1fr;
-  }
-  .contact-list {
-    justify-items: start;
-  }
 }
 
 /* ================= FOOTER ================= */
@@ -1126,8 +1139,9 @@ main:focus {
 }
 
 /* ================= RESPONSIVE ================= */
-@media (max-width: 800px) {
-  /* Small photo above the name so the CTAs stay in the first screen. */
+/* Below 880px a side-by-side hero leaves the text cramped, so it stacks: small photo above
+   the name keeps both CTAs in the first screen. */
+@media (max-width: 880px) {
   .hero {
     grid-template-columns: 1fr;
     gap: 28px;
@@ -1139,6 +1153,8 @@ main:focus {
     justify-self: start;
     max-width: 140px;
   }
+}
+@media (max-width: 800px) {
   .xp-panel {
     padding: 24px 20px;
   }

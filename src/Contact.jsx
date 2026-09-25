@@ -8,6 +8,9 @@ const LINKS = [
   { label: "Phone", text: "+961 78976841", href: "tel:+96178976841" },
 ];
 
+const COPY_SHORTCUT =
+  typeof navigator !== "undefined" && /mac|iphone|ipad/i.test(navigator.platform) ? "⌘C" : "Ctrl C";
+
 function Contact() {
   const [copyLabel, setCopyLabel] = useState("Copy");
   const emailRef = useRef(null);
@@ -23,7 +26,7 @@ function Contact() {
       const selection = window.getSelection();
       selection.removeAllRanges();
       selection.addRange(range);
-      setCopyLabel("Press Ctrl C");
+      setCopyLabel(`Press ${COPY_SHORTCUT}`);
     }
     setTimeout(() => setCopyLabel("Copy"), 2000);
   };
@@ -49,6 +52,7 @@ function Contact() {
             </span>
           </div>
         </div>
+        {/* A row under the actions, so the section reads as one block with no dead middle. */}
         <ul className="contact-list">
           {LINKS.map((link) => (
             <li key={link.label}>
