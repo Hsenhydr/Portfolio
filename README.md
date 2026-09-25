@@ -31,7 +31,8 @@ src/
   Footer.jsx
   CommandPalette.jsx  Ctrl K menu
   App.css             tokens and all styles
-public/               CV, photo, favicon, link-preview image
+public/               CV, photo, logo mask, icons, link-preview image
+design/               logo source file (not deployed)
 ```
 
 ## Run it

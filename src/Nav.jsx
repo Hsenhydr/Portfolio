@@ -50,7 +50,7 @@ function Nav() {
     <nav className="site-nav" aria-label="Primary">
       <div className="nav-inner">
         <a href="#hero" className="nav-logo" aria-label="Hussein Haidar, back to top">
-          HH
+          <span className="nav-logo-mark" aria-hidden="true" />
         </a>
         <ul className="nav-links">
           {NAV_LINKS.map((link) => (
