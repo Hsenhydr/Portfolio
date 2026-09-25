@@ -50,7 +50,11 @@ function Nav() {
     <nav className="site-nav" aria-label="Primary">
       <div className="nav-inner">
         <a href="#hero" className="nav-logo" aria-label="Hussein Haidar, back to top">
-          <span className="nav-logo-mark" aria-hidden="true" />
+          {/* HH "Layers" mark (master: design/logo.svg). Front H takes the text colour, back H the accent. */}
+          <svg className="nav-logo-mark" viewBox="0 0 40 34" aria-hidden="true" focusable="false">
+            <path className="logo-back" d="M17 9h6v8.5h10v-8.5h6v24h-6v-10.5h-10v10.5h-6z" />
+            <path d="M1 1h6v8.5h10v-8.5h6v24h-6v-10.5h-10v10.5h-6z" fill="currentColor" />
+          </svg>
         </a>
         <ul className="nav-links">
           {NAV_LINKS.map((link) => (

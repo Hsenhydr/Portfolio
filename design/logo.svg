@@ -1,0 +1,6 @@
+<!-- HH "Layers" mark, master file. 40x34 grid: the back H's left stem sits exactly behind the
+     front H's right stem. Front = text colour, back = accent. Every site icon is built from this. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 34">
+  <path d="M17 9h6v8.5h10v-8.5h6v24h-6v-10.5h-10v10.5h-6z" fill="#2fb5a7"/>
+  <path d="M1 1h6v8.5h10v-8.5h6v24h-6v-10.5h-10v10.5h-6z" fill="#e6eeef"/>
+</svg>

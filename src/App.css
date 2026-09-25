@@ -242,24 +242,24 @@ main:focus {
   padding: 4px 0;
   transition: color 0.15s;
 }
-.nav-logo:hover {
-  color: var(--accent-text);
-}
-/* The HH monogram is an alpha mask painted with currentColor, so it follows the theme
-   and the hover colour. The back H keeps its softer tone through the mask's alpha. */
+/* HH mark as inline SVG: the front H follows the theme's text colour, the back H the accent.
+   Hover brightens only the back layer, so the two layers never merge into one colour. */
 .nav-logo-mark {
   display: block;
-  width: 32px;
+  width: 33px;
   height: 28px;
-  background-color: currentColor;
-  -webkit-mask: url("/logo-mask.png") center / contain no-repeat;
-  mask: url("/logo-mask.png") center / contain no-repeat;
 }
-/* High Contrast mode repaints backgrounds; keep the mark in the system text colour. */
+.logo-back {
+  fill: var(--accent);
+  transition: fill 0.15s;
+}
+.nav-logo:hover .logo-back {
+  fill: var(--accent-hover);
+}
+/* High Contrast mode: front in the system text colour, back in its muted grey. */
 @media (forced-colors: active) {
-  .nav-logo-mark {
-    forced-color-adjust: none;
-    background-color: CanvasText;
+  .logo-back {
+    fill: GrayText;
   }
 }
 .nav-links {
