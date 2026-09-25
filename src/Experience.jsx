@@ -14,7 +14,7 @@ const CURRENT_ROLE = {
     {
       name: "Postal automation SaaS",
       what: "Microsoft EntraID SSO via SAML 2.0 with DB-driven multi-tenant config and cross-tenant isolation.",
-      metric: "SAML 2.0, AES‑256‑GCM",
+      metric: "AES‑256‑GCM encrypted MFA",
     },
     {
       name: "Document ingestion pipeline",
@@ -38,7 +38,7 @@ const CURRENT_ROLE = {
       body: "I encrypted MFA secrets at rest with AES‑256‑GCM and gave each one a version prefix (enc:v1:). Old and new secrets could coexist, so I shipped the change with no maintenance window.",
     },
     {
-      title: "102,274 production files, verified on arrival",
+      title: "Verifying files before routing them",
       body: "My pipeline checks each file for stability and verifies its SHA256 hash before routing it. When a file fails, the pipeline moves it to a retry archive and tries again.",
     },
   ],

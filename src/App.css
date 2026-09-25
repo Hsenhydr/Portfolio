@@ -664,16 +664,12 @@ main:focus {
   color: var(--muted);
   margin: 4px 0 0;
 }
+/* Plain teal text, no chip: Education stays free of boxes. */
 .edu-note {
-  display: inline-block;
   font-size: var(--fs-sm);
   font-weight: 500;
-  /* accent-hover, not accent-text: on the tinted chip it keeps light mode above 4.5:1 (5.6). */
-  color: var(--accent-hover);
-  background: var(--accent-soft);
-  border-radius: var(--radius-sm);
-  padding: 3px 10px;
-  margin: 10px 0 0;
+  color: var(--accent-text);
+  margin: 8px 0 0;
 }
 .edu-topics {
   font-size: var(--fs-sm);
