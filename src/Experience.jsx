@@ -42,7 +42,7 @@ const CURRENT_ROLE = {
       body: "I made the pipeline wait until each file finishes writing and verify its SHA256 hash before routing it. Failed files wait in a retry archive for another attempt.",
     },
   ],
-  stack: "Python, Flask, SQLAlchemy, PHP/Symfony, Angular, TypeScript",
+  stack: "Angular, TypeScript, Python, Flask, SQLAlchemy, PHP/Symfony",
 };
 
 const PAST_ROLES = [

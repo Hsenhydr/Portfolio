@@ -1,57 +1,58 @@
-// Content mirrors public/Hussein_Haidar_CV.pdf (Technical Skills) in the CV's order;
-// update the CV first, then this. `detail` holds what the CV puts in parentheses.
+// Mirrors the Technical Skills section of public/Hussein_Haidar_CV.pdf; update the CV first, then this.
+// Order follows the main stack (Angular + Flask, then PHP/Symfony) and what a reviewer checks first.
+// `detail` holds what the CV puts in parentheses.
 const SKILLS = [
-  { category: "Languages", items: ["Python", "TypeScript", "JavaScript", "C#", "Java", "Dart"] },
+  { category: "Languages", items: ["Python", "TypeScript", "PHP", "JavaScript", "Java", "C#", "Dart"] },
+  {
+    category: "Backend & APIs",
+    items: ["Flask", "Symfony", { name: "Node.js", detail: "Express.js" }, "Spring Boot", "ASP.NET Core", "REST APIs"],
+  },
   {
     category: "Frontend",
     items: [
       { name: "Angular", detail: "Signals API, RxJS, standalone components" },
       "React.js",
-      "Flutter",
-      "HTML",
-      "CSS",
-      "Bootstrap",
-      "PrimeNG",
+      { name: "Flutter", detail: "Provider" },
       "Angular Material",
+      "PrimeNG",
+      "HTML/CSS",
     ],
   },
   {
-    category: "Backend & APIs",
-    items: [
-      "Flask",
-      { name: "Symfony", detail: "PHP" },
-      "Node.js",
-      "Express.js",
-      "Spring Boot",
-      "ASP.NET Core",
-      "REST APIs",
-      "JWT",
-      "SAML 2.0",
-      "Doctrine ORM",
-    ],
-  },
-  { category: "Databases", items: ["MySQL", "SQLAlchemy", "PostgreSQL", "SQL Server", "SQLite", "Firestore"] },
-  { category: "Messaging & Tasks", items: ["Celery", "RabbitMQ", "n8n"] },
-  {
-    category: "Integrations",
-    items: ["Twilio", "SendGrid", "Firebase", "Socket.io", { name: "pyvmomi", detail: "VMware" }, "gevent", "Jinja2"],
+    category: "Databases & ORMs",
+    items: ["PostgreSQL", "MySQL", "SQL Server", "SQLite", "SQLAlchemy", "Doctrine ORM"],
   },
   {
     category: "Security",
-    items: ["TOTP/MFA", "AES‑256‑GCM", "Fernet encryption", "Microsoft EntraID SSO", "RBAC", "Device fingerprinting"],
+    items: [
+      // Long items first so the short ones pair up on the last line when the row wraps on phones.
+      { name: "Microsoft EntraID SSO", detail: "SAML 2.0" },
+      { name: "Encryption", detail: "AES‑256‑GCM, Fernet" },
+      "Device fingerprinting",
+      "TOTP MFA",
+      "JWT",
+      "RBAC",
+    ],
   },
   {
     category: "Architecture",
     items: [
-      "OOP",
+      "Multi‑tenant SaaS",
       { name: "Domain-Driven Design", detail: "DDD" },
       "3-Tier Architecture",
       "MVVM",
-      "Multi‑tenant SaaS",
-      "Provider + Repository Pattern",
+      "Repository Pattern",
     ],
   },
-  { category: "Tools & DevOps", items: ["Git", "GitHub", "GitLab", "Docker", "CI/CD Pipelines", "Jest"] },
+  { category: "Messaging & Tasks", items: ["Celery", "RabbitMQ", "n8n"] },
+  {
+    category: "Integrations",
+    items: ["Twilio", "SendGrid", { name: "Firebase", detail: "Firestore" }, "Socket.io", { name: "pyvmomi", detail: "VMware" }],
+  },
+  {
+    category: "Tools & DevOps",
+    items: [{ name: "Git", detail: "GitHub, GitLab" }, "Docker", "CI/CD pipelines", "Jest"],
+  },
 ];
 
 function Skills() {
