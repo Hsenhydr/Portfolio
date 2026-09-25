@@ -670,23 +670,17 @@ main:focus {
   display: grid;
   gap: 28px;
 }
-.edu-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 16px;
-}
-.edu-row h4 {
-  font-size: var(--fs-md);
-  font-weight: 600;
-  margin: 0;
-}
 .edu-date {
   font-family: var(--font-mono);
   font-size: var(--fs-xs);
   color: var(--muted);
   font-variant-numeric: tabular-nums;
-  white-space: nowrap;
+  margin: 0 0 4px;
+}
+.edu-title {
+  font-size: var(--fs-md);
+  font-weight: 600;
+  margin: 0;
 }
 .edu-detail {
   font-size: var(--fs-sm);
@@ -715,21 +709,27 @@ main:focus {
 
 /* ================= SKILLS ================= */
 /* Compact spec table: category left, items right, split by thin rules. */
+/* One shared grid: the label column is exactly as wide as the longest label and stays
+   aligned across rows (rows use display: contents), so no dead band opens before the items. */
 .skills-table {
   display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  column-gap: 40px;
+  /* Label and first line of items share a text baseline, whatever the line height. */
+  align-items: baseline;
   margin: 0;
 }
 .skills-table > div {
-  display: grid;
-  grid-template-columns: 190px minmax(0, 1fr);
-  gap: 24px;
+  display: contents;
+}
+.skills-table dt,
+.skills-table dd {
   padding: 11px 0;
 }
 .skills-table dt {
   font-size: var(--fs-sm);
   font-weight: 600;
   color: var(--muted);
-  padding-top: 1px;
 }
 /* Every item carries a leading rule; the list shifts left by one rule-width and the dd
    clips it, so the first item on each wrapped line never shows a stray separator. */
@@ -737,16 +737,19 @@ main:focus {
   margin: 0;
   overflow: hidden;
 }
+/* Inline items (not flex) so text-wrap: balance can split a wrapped row into evenly filled
+   lines instead of leaving one item alone on the last line. */
 .skills-table ul {
   list-style: none;
   padding: 0;
   margin: 0 0 0 -25px;
-  display: flex;
-  flex-wrap: wrap;
-  row-gap: 4px;
+  line-height: 1.9;
+  text-wrap: balance;
 }
 .skills-table li {
+  display: inline-block;
   white-space: nowrap;
+  line-height: 1.55;
 }
 .skills-table li::before {
   content: "";
@@ -763,10 +766,14 @@ main:focus {
   margin-left: 6px;
 }
 @media (max-width: 800px) {
-  .skills-table > div {
+  .skills-table {
     grid-template-columns: 1fr;
-    gap: 4px;
-    padding: 12px 0;
+  }
+  .skills-table dt {
+    padding: 12px 0 4px;
+  }
+  .skills-table dd {
+    padding: 0 0 12px;
   }
   /* Long details wrap on phones instead of forcing the row wider than the screen. */
   .skills-table li {

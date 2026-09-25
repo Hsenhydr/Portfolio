@@ -15,7 +15,7 @@ const GROUPS = [
     ],
   },
   {
-    heading: "Certification",
+    heading: "Certifications",
     items: [
       {
         title: "Software Engineering Excellence Masterclass",
@@ -41,10 +41,9 @@ function Education() {
             <ul className="edu-list">
               {group.items.map((item) => (
                 <li key={item.title}>
-                  <div className="edu-row">
-                    <h4>{item.title}</h4>
-                    <span className="edu-date">{item.period}</span>
-                  </div>
+                  {/* Date above the title, same pattern as the past roles in Experience. */}
+                  <p className="edu-date">{item.period}</p>
+                  <h4 className="edu-title">{item.title}</h4>
                   <p className="edu-detail">{item.detail}</p>
                   {item.note && <p className="edu-note">{item.note}</p>}
                   {item.topics && <p className="edu-topics">{item.topics}</p>}
