@@ -132,7 +132,7 @@ a {
   top: -60px;
   background: var(--accent);
   color: var(--on-accent);
-  padding: 10px 18px;
+  padding: 11px 18px;
   border-radius: var(--radius);
   font-weight: 700;
   font-size: var(--fs-sm);
@@ -1028,21 +1028,6 @@ main:focus {
   margin: 0 auto;
   padding-top: 28px;
   border-top: 1px solid var(--line);
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.footer-link {
-  color: var(--muted);
-  text-decoration: underline;
-  text-decoration-color: var(--line);
-  text-underline-offset: 4px;
-  transition: color 0.15s, text-decoration-color 0.15s;
-}
-.footer-link:hover {
-  color: var(--accent-text);
-  text-decoration-color: var(--accent-text);
 }
 
 /* ================= COMMAND PALETTE ================= */
@@ -1178,5 +1163,56 @@ main:focus {
 @media (max-width: 520px) {
   .section {
     padding-block: 56px;
+  }
+}
+
+/* ================= TOUCH TARGETS ================= */
+/* Phones and touch screens: every tap target is at least 44x44px (Apple/Google guidance).
+   The extra area is padding, so nothing looks different; only the hit area grows. */
+@media (pointer: coarse), (max-width: 800px) {
+  .nav-logo {
+    display: inline-flex;
+    align-items: center;
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .cmdk-trigger,
+  .menu-toggle {
+    min-height: 44px;
+    height: 44px;
+  }
+  .menu-toggle {
+    width: 44px;
+  }
+  .contact-copy-btn {
+    min-height: 44px;
+  }
+  .contact-email {
+    padding-block: 0;
+  }
+  .contact-list {
+    row-gap: 0;
+  }
+  .contact-list a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .mobile-menu-panel a {
+    min-height: 44px;
+  }
+}
+@media (max-width: 800px) {
+  /* Stacked under the description, the featured stack reads as one line like the other cards. */
+  .project-stack-list {
+    display: block;
+    font-size: var(--fs-xs);
+    color: var(--muted);
+  }
+  .project-stack-list li {
+    display: inline;
+  }
+  .project-stack-list li:not(:last-child)::after {
+    content: ", ";
   }
 }
