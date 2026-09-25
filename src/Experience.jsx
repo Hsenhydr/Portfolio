@@ -14,11 +14,11 @@ const CURRENT_ROLE = {
     {
       name: "Postal automation SaaS",
       what: "Microsoft EntraID SSO via SAML 2.0 with DB-driven multi-tenant config and cross-tenant isolation.",
-      metric: "AES‑256‑GCM encrypted MFA",
+      metric: "SSO and encrypted MFA",
     },
     {
       name: "Document ingestion pipeline",
-      what: "Stability checks, SHA256 verification, routing and retry archival, with parsers across 4 document types.",
+      what: "End-to-end ingestion and routing, with parsers across 4 document types.",
       metric: "102,274 files, 288,456+ records",
     },
     {
@@ -38,8 +38,8 @@ const CURRENT_ROLE = {
       body: "I encrypted MFA secrets at rest with AES‑256‑GCM and gave each one a version prefix (enc:v1:). Old and new secrets could coexist, so I shipped the change with no maintenance window.",
     },
     {
-      title: "Verifying files before routing them",
-      body: "My pipeline checks each file for stability and verifies its SHA256 hash before routing it. When a file fails, the pipeline moves it to a retry archive and tries again.",
+      title: "Never processing a half-copied file",
+      body: "I made the pipeline wait until each file finishes writing and verify its SHA256 hash before routing it. Failed files wait in a retry archive for another attempt.",
     },
   ],
   stack: "Python, Flask, SQLAlchemy, PHP/Symfony, Angular, TypeScript",
@@ -85,6 +85,8 @@ function Experience() {
           <span className="xp-date">{r.period}</span>
         </header>
         <p className="xp-intro">{r.intro}</p>
+        {/* Same order as the past roles below: title, description, stack. */}
+        <p className="xp-stack xp-stack-lead">{r.stack}</p>
 
         <dl className="xp-platforms">
           {r.platforms.map((p) => (
@@ -107,8 +109,6 @@ function Experience() {
             ))}
           </div>
         </div>
-
-        <p className="xp-stack">{r.stack}</p>
       </article>
 
       <ol className="xp-timeline">

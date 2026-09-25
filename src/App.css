@@ -618,6 +618,10 @@ main:focus {
   max-width: 65ch;
   margin: 8px 0 0;
 }
+/* Under the intro: tight to the text it describes, clear of the platforms below. */
+.xp-stack-lead {
+  margin: -18px 0 32px;
+}
 .xp-item .xp-stack {
   margin-top: 10px;
 }
