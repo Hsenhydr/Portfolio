@@ -20,7 +20,8 @@
   --shadow: rgba(0, 0, 0, 0.45);
 
   --font-sans: "Figtree", -apple-system, "Segoe UI", Arial, sans-serif;
-  --font-mono: "Geist Mono", ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+  --font-mono:
+    "Geist Mono", ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
   --fs-xs: 12px;
   --fs-code: 13px;
   --fs-sm: 14px;
@@ -195,7 +196,11 @@ main:focus {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: transform 0.15s, background-color 0.15s, border-color 0.15s, color 0.15s;
+  transition:
+    transform 0.15s,
+    background-color 0.15s,
+    border-color 0.15s,
+    color 0.15s;
 }
 .btn:active {
   transform: translateY(1px);
@@ -303,7 +308,9 @@ main:focus {
   padding: 0 8px 0 14px;
   border-radius: var(--radius);
   cursor: pointer;
-  transition: border-color 0.15s, color 0.15s;
+  transition:
+    border-color 0.15s,
+    color 0.15s;
 }
 .cmdk-trigger:hover {
   border-color: var(--muted);
@@ -343,7 +350,9 @@ main:focus {
   height: 1.5px;
   background: currentColor;
   border-radius: 1px;
-  transition: transform 0.2s, background-color 0.2s;
+  transition:
+    transform 0.2s,
+    background-color 0.2s;
 }
 .menu-toggle span {
   position: relative;
@@ -377,7 +386,9 @@ main:focus {
   max-height: 0;
   overflow: hidden;
   visibility: hidden;
-  transition: max-height 0.25s ease, visibility 0s linear 0.25s;
+  transition:
+    max-height 0.25s ease,
+    visibility 0s linear 0.25s;
   border-bottom: 1px solid transparent;
   background: var(--bg);
 }
@@ -385,7 +396,9 @@ main:focus {
   max-height: 320px;
   visibility: visible;
   border-bottom-color: var(--line);
-  transition: max-height 0.25s ease, visibility 0s;
+  transition:
+    max-height 0.25s ease,
+    visibility 0s;
 }
 .mobile-menu-panel ul {
   list-style: none;
@@ -472,6 +485,7 @@ main:focus {
   aspect-ratio: 4 / 5;
   object-fit: cover;
   object-position: center 20%;
+  filter: brightness(1.12);
   justify-self: end;
   border-radius: var(--radius);
   display: block;
@@ -815,7 +829,9 @@ main:focus {
   padding: 28px;
   display: flex;
   flex-direction: column;
-  transition: border-color 0.2s, transform 0.2s;
+  transition:
+    border-color 0.2s,
+    transform 0.2s;
 }
 .project-card:hover {
   border-color: var(--muted);
@@ -1025,7 +1041,9 @@ main:focus {
   text-decoration: underline;
   text-decoration-color: var(--line);
   text-underline-offset: 4px;
-  transition: text-decoration-color 0.15s, color 0.15s;
+  transition:
+    text-decoration-color 0.15s,
+    color 0.15s;
 }
 .contact-list a:hover {
   color: var(--accent-text);
