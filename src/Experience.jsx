@@ -9,7 +9,7 @@ const CURRENT_ROLE = {
     {
       name: "Multi-tenant survey platform",
       what: "XML/CSV export adapters for 6 French housing organizations, plus a real-time communications dashboard with SMS/email flows.",
-      metric: "88,967 tenants, 152 agencies",
+      metric: "100K+ tenants, 152 agencies",
     },
     {
       name: "Postal automation SaaS",
@@ -19,7 +19,7 @@ const CURRENT_ROLE = {
     {
       name: "Document ingestion pipeline",
       what: "End-to-end ingestion and routing, with parsers across 4 document types.",
-      metric: "102,274 files, 288,456+ records",
+      metric: "100K+ files, 285K+ records",
     },
     {
       name: "Cloud infrastructure SaaS",
@@ -29,7 +29,7 @@ const CURRENT_ROLE = {
     {
       name: "Shareholder self-service portal",
       what: "For a major asset manager: per-shareholder JWT auth, per-fund campaign gating, batch import with 8+ validators.",
-      metric: "128,779 shareholders, 16 funds",
+      metric: "128K+ shareholders, 16 funds",
     },
   ],
   decisions: [
