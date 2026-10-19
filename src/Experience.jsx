@@ -19,7 +19,7 @@ const CURRENT_ROLE = {
     {
       name: "Document ingestion pipeline",
       what: "End-to-end ingestion and routing, with parsers across 4 document types.",
-      metric: "100K+ files, 285K+ records",
+      metric: "165K+ files, 285K+ records",
     },
     {
       name: "Cloud infrastructure SaaS",
